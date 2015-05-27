@@ -11,6 +11,13 @@ resource "aws_instance" "nginx" {
   depends_on = ["aws_security_group.development"]
 }
 
+resource "aws_instance" "nginx2" {
+  ami = "ami-4ddffc4c"
+  instance_type = "t1.micro"
+  security_groups = ["${aws_security_group.development.name}"]
+  depends_on = ["aws_security_group.development"]
+}
+
 resource "aws_security_group" "development" {
   name = "development"
   description = "allow all traffic in development"
